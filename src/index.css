@@ -6,34 +6,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #8b5cf6;
-  --primary-glow: rgba(139, 92, 246, 0.2);
-  --secondary: #ec4899;
+  --base: #FCE9E9;
+  --secondary: #C74D4D;
+  --primary: #8B1E1E;
+  --onyx: #511010;
+  --primary-glow: rgba(139, 30, 30, 0.1);
 }
 
 body {
   font-family: 'Outfit', sans-serif;
-  @apply bg-gradient-to-br from-indigo-100 via-slate-100 to-violet-100 min-h-screen text-slate-800 antialiased;
+  @apply bg-[#FCE9E9] min-h-screen text-[#511010] antialiased;
+  background-image: radial-gradient(circle at 0% 0%, rgba(199, 77, 77, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(81, 16, 16, 0.05) 0%, transparent 50%);
 }
 
 .glass {
-  @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl shadow-indigo-500/10;
+  @apply bg-white/70 backdrop-blur-2xl border border-[#C74D4D]/20 shadow-xl shadow-[#8B1E1E]/5;
 }
 
 .glass-pill {
-  @apply bg-white/30 backdrop-blur-md border border-white/60 shadow-sm;
+  @apply bg-white/40 backdrop-blur-md border border-[#C74D4D]/30 shadow-sm;
 }
 
 .text-gradient {
-  @apply bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[#C74D4D] to-[#511010] bg-clip-text text-transparent;
 }
 
 .btn-primary {
-  @apply relative overflow-hidden bg-violet-600 px-6 py-2.5 rounded-xl font-semibold text-white shadow-lg shadow-violet-500/20 transition-all duration-300 hover:bg-violet-500 hover:shadow-violet-500/40 active:scale-95;
+  @apply relative overflow-hidden bg-[#8B1E1E] px-6 py-2.5 rounded-xl font-semibold text-[#FCE9E9] shadow-lg shadow-[#8B1E1E]/20 transition-all duration-300 hover:bg-[#511010] hover:shadow-[#511010]/30 active:scale-95;
 }
 
 .btn-secondary {
-  @apply px-4 py-2 rounded-xl font-medium border border-slate-200 bg-white/50 hover:bg-white hover:border-violet-200 transition-all text-slate-600 hover:text-violet-600;
+  @apply px-4 py-2 rounded-xl font-bold border border-[#C74D4D]/30 bg-white/50 hover:bg-white hover:border-[#8B1E1E]/50 transition-all text-[#8B1E1E] hover:text-[#511010];
 }
 
 @keyframes float {

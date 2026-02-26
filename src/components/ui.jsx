@@ -5,7 +5,7 @@ import { useHabits } from "../store";
 import { toISODate, startOfMonth, endOfMonth, addDays, dayOfWeekMon0, monthLabel } from "../utils";
 
 // ---------- small helpers ----------
-const presetColors = ["#8b5cf6", "#ec4899", "#3b82f6", "#10b981", "#f59e0b", "#f43f5e"];
+const presetColors = ["#8b5cf6", "#ec4899", "#3b82f6", "#10b981", "#f59e0b", "#ef4444", "#f97316", "#06b6d4", "#7b3f00"];
 const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 // ---------- Icons ----------
@@ -30,10 +30,10 @@ function LinkItem({ to, children }) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-300
+        `rounded-xl px-4 py-2 text-sm font-bold transition-all duration-300
         ${isActive
-          ? "bg-slate-900/10 text-violet-600 shadow-inner"
-          : "text-slate-500 hover:text-violet-600 hover:bg-slate-900/5"}`
+          ? "bg-[#511010]/10 text-[#511010] shadow-inner"
+          : "text-[#C74D4D] hover:text-[#8B1E1E] hover:bg-[#C74D4D]/10"}`
       }
     >
       {children}
@@ -46,8 +46,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-violet-500 to-indigo-600 shadow-lg shadow-violet-500/20 animate-float flex items-center justify-center">
-            <BoltIcon className="w-6 h-6 text-white" />
+          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#C74D4D] to-[#E07A5F] shadow-lg shadow-[#8B1E1E]/20 animate-float flex items-center justify-center">
+            <BoltIcon className="w-6 h-6 text-[#FCE9E9]" />
           </div>
           <div>
             <p className="text-lg font-bold leading-tight tracking-tight text-gradient">Daily Dominion</p>
@@ -70,7 +70,7 @@ export function Navbar() {
 // ---------- StatCard ----------
 export function StatCard({ title, value, subtitle }) {
   return (
-    <div className="grow rounded-2xl glass p-5 transition-all hover:translate-y-[-2px] hover:shadow-xl hover:shadow-violet-500/10">
+    <div className="grow rounded-2xl glass p-5 transition-all hover:translate-y-[-2px] hover:shadow-xl hover:shadow-[#8B1E1E]/10">
       <p className="text-sm font-medium text-slate-500">{title}</p>
       <p className="mt-2 text-3xl font-bold text-slate-800">{value}</p>
       <p className="mt-1 text-xs text-slate-400 font-medium">{subtitle}</p>
@@ -86,8 +86,8 @@ export function TrendChart({ data }) {
         <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <defs>
             <linearGradient id="trendGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+              <stop offset="5%" stopColor="#8B1E1E" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#8B1E1E" stopOpacity={0} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
@@ -115,13 +115,13 @@ export function TrendChart({ data }) {
               backdropFilter: 'blur(8px)',
               boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
             }}
-            itemStyle={{ color: '#8b5cf6', fontWeight: 'bold' }}
-            cursor={{ stroke: '#8b5cf6', strokeWidth: 2, strokeDasharray: '4 4' }}
+            itemStyle={{ color: '#511010', fontWeight: 'bold' }}
+            cursor={{ stroke: '#8B1E1E', strokeWidth: 2, strokeDasharray: '4 4' }}
           />
           <Area
             type="monotone"
             dataKey="percent"
-            stroke="#8b5cf6"
+            stroke="#511010"
             strokeWidth={3}
             fillOpacity={1}
             fill="url(#trendGradient)"
@@ -164,7 +164,7 @@ export function HabitForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g., Deep Work 4 Hours"
-          className="mt-1.5 w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all placeholder:text-slate-400"
+          className="mt-1.5 w-full rounded-xl bg-white border border-[#C74D4D]/20 px-4 py-3 text-sm text-[#511010] outline-none focus:ring-2 focus:ring-[#8B1E1E]/30 focus:border-[#8B1E1E] transition-all placeholder:text-[#C74D4D]"
         />
       </div>
 
@@ -178,8 +178,8 @@ export function HabitForm() {
               onClick={() => setTimeOfDay(t.label)}
               className={`flex flex-col items-center justify-center rounded-xl py-3 border transition-all duration-300 
                 ${timeOfDay === t.label
-                  ? "bg-violet-600 text-white border-violet-600 shadow-lg shadow-violet-500/20"
-                  : "bg-white border-slate-100 text-slate-400 hover:bg-slate-50 hover:border-slate-300"}`}
+                  ? "bg-[#8B1E1E] text-[#FCE9E9] border-[#8B1E1E] shadow-lg shadow-[#8B1E1E]/20"
+                  : "bg-white border-[#C74D4D]/20 text-[#C74D4D] hover:bg-[#FCE9E9] hover:border-[#8B1E1E]"}`}
             >
               <span className="text-lg">{t.emoji}</span>
               <span className="text-[10px] font-bold uppercase mt-1 tracking-wider">{t.label}</span>
@@ -247,15 +247,15 @@ export function HabitCard({ habit, dateISO }) {
   };
 
   return (
-    <div className="rounded-2xl glass p-5 transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/10 group">
+    <div className="rounded-2xl glass p-5 transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B1E1E]/10 group">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <BoltIcon color={habit.color} className="w-5 h-5 drop-shadow-sm" />
             <p className="truncate text-lg font-bold text-slate-800 tracking-tight leading-none">{habit.name}</p>
           </div>
-          <div className="mt-2.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-violet-600">
-            <span className="bg-violet-100 px-1.5 py-0.5 rounded-md flex items-center gap-1">
+          <div className="mt-2.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#8B1E1E]">
+            <span className="bg-[#C74D4D]/10 px-1.5 py-0.5 rounded-md flex items-center gap-1">
               {timeEmojis[habit.timeOfDay] || "📅"} {habit.timeOfDay || "Anytime"}
             </span>
           </div>
@@ -272,8 +272,8 @@ export function HabitCard({ habit, dateISO }) {
           onClick={() => actions.toggleDone(habit.id, dateISO)}
           className={`shrink-0 rounded-xl px-5 py-2.5 text-sm font-bold transition-all duration-300 active:scale-95
             ${done
-              ? "bg-violet-600 text-white shadow-lg shadow-violet-500/30"
-              : "bg-slate-100 text-slate-500 border border-slate-200 hover:bg-white hover:text-violet-600 hover:border-violet-200"}`}
+              ? "bg-[#8B1E1E] text-[#FCE9E9] shadow-lg shadow-[#8B1E1E]/30"
+              : "bg-[#C74D4D]/10 text-[#C74D4D] border border-[#C74D4D]/20 hover:bg-white hover:text-[#511010] hover:border-[#8B1E1E]"}`}
         >
           {done ? "Completed ✓" : "Mark Done"}
         </button>
@@ -286,7 +286,7 @@ export function HabitCard({ habit, dateISO }) {
         >
           Remove
         </button>
-        <div className={`text-[10px] font-bold uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${done ? "text-violet-600 bg-violet-100" : "text-slate-400 bg-slate-100"}`}>
+        <div className={`text-[10px] font-black uppercase tracking-[0.2em] px-2 py-0.5 rounded-md ${done ? "text-[#511010] bg-[#C74D4D]/20 border border-[#C74D4D]/30" : "text-[#C74D4D] bg-[#C74D4D]/5"}`}>
           {done ? "Verified" : "Pending"}
         </div>
       </div>
@@ -333,7 +333,7 @@ export function ReminderPanel() {
               <select
                 value={habitId}
                 onChange={(e) => setHabitId(e.target.value)}
-                className="mt-1.5 w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-violet-500/50 transition-all appearance-none cursor-pointer"
+                className="mt-1.5 w-full rounded-xl bg-white border border-[#C74D4D]/20 px-4 py-3 text-sm text-[#511010] outline-none focus:ring-2 focus:ring-[#8B1E1E]/30 transition-all appearance-none cursor-pointer"
               >
                 {state.habits.map((h) => (
                   <option key={h.id} value={h.id} className="bg-white">
@@ -350,7 +350,7 @@ export function ReminderPanel() {
                   type="time"
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
-                  className="mt-1.5 w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-violet-500/50 transition-all"
+                  className="mt-1.5 w-full rounded-xl bg-white border border-[#C74D4D]/20 px-4 py-3 text-sm text-[#511010] outline-none focus:ring-2 focus:ring-[#8B1E1E]/30 transition-all"
                 />
               </div>
               <div>
@@ -359,7 +359,7 @@ export function ReminderPanel() {
                   value={label}
                   onChange={(e) => setLabel(e.target.value)}
                   placeholder="e.g., Sunrise"
-                  className="mt-1.5 w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-violet-500/50 transition-all placeholder:text-slate-400"
+                  className="mt-1.5 w-full rounded-xl bg-white border border-[#C74D4D]/20 px-4 py-3 text-sm text-[#511010] outline-none focus:ring-2 focus:ring-[#8B1E1E]/30 transition-all placeholder:text-[#C74D4D]"
                 />
               </div>
             </div>
@@ -433,17 +433,17 @@ export function CalendarGrid() {
             </p>
           </div>
 
-          <div className="flex items-center gap-1 bg-white/5 p-1 rounded-2xl border border-white/5">
+          <div className="flex items-center gap-1 bg-[#C74D4D]/10 p-1 rounded-2xl border border-[#C74D4D]/20">
             <button
               onClick={() => setCursor((c) => new Date(c.getFullYear(), c.getMonth() - 1, 1))}
-              className="rounded-xl px-4 py-2 text-base hover:bg-white/10 transition-all font-bold text-white"
+              className="rounded-xl px-4 py-2 text-base hover:bg-[#C74D4D]/20 transition-all font-bold text-[#8B1E1E]"
             >
               ←
             </button>
-            <div className="min-w-[140px] text-center text-sm font-bold text-white uppercase tracking-widest">{monthLabel(cursor)}</div>
+            <div className="min-w-[140px] text-center text-sm font-bold text-[#511010] uppercase tracking-widest">{monthLabel(cursor)}</div>
             <button
               onClick={() => setCursor((c) => new Date(c.getFullYear(), c.getMonth() + 1, 1))}
-              className="rounded-xl px-4 py-2 text-base hover:bg-white/10 transition-all font-bold text-white"
+              className="rounded-xl px-4 py-2 text-base hover:bg-[#C74D4D]/20 transition-all font-bold text-[#8B1E1E]"
             >
               →
             </button>
@@ -501,7 +501,7 @@ export function CalendarGrid() {
                 className="inline-flex items-center gap-2 rounded-full glass-pill pr-4 pl-3 py-1.5 text-xs group"
               >
                 <BoltIcon color={h.color} className="w-3.5 h-3.5 transition-transform group-hover:scale-125" />
-                <span className="text-slate-600 font-semibold">{h.name}</span>
+                <span className="text-[#8B1E1E] font-bold">{h.name}</span>
               </span>
             ))}
           </div>
@@ -524,12 +524,12 @@ function DayCell({ iso, day, isToday, doneCount, total, habits, completions, onT
         onClick={() => setOpen((x) => !x)}
         className={`aspect-square w-full rounded-2xl border p-2 text-left transition-all duration-300 transform hover:scale-105
           ${isToday
-            ? "border-violet-500 bg-violet-600 text-white shadow-[0_0_20px_rgba(139,92,246,0.2)]"
-            : "border-slate-200 bg-white/50 hover:bg-white hover:border-violet-200"}`}
+            ? "border-[#8B1E1E] bg-[#511010] text-[#FCE9E9] shadow-[0_0_20px_rgba(81,16,16,0.2)]"
+            : "border-[#C74D4D]/30 bg-white/50 hover:bg-white hover:border-[#8B1E1E]/50"}`}
       >
         <div className="flex items-start justify-between">
-          <div className={`text-lg font-bold ${isToday ? "text-white" : "text-slate-800"}`}>{day}</div>
-          <div className={`text-xs font-bold ${isToday ? "text-violet-100" : "text-slate-400"}`}>
+          <div className={`text-lg font-bold ${isToday ? "text-[#FCE9E9]" : "text-[#511010]"}`}>{day}</div>
+          <div className={`text-xs font-bold ${isToday ? "text-[#C74D4D]" : "text-[#C74D4D]"}`}>
             {total === 0 ? "" : `${doneCount}/${total}`}
           </div>
         </div>
@@ -549,13 +549,13 @@ function DayCell({ iso, day, isToday, doneCount, total, habits, completions, onT
       </button>
 
       {open && total > 0 && (
-        <div className={`absolute z-50 left-1/2 -translate-x-1/2 w-[280px] bg-violet-50/98 backdrop-blur-2xl rounded-3xl p-5 shadow-[0_20px_50px_rgba(139,92,246,0.3)] border border-white animate-float
+        <div className={`absolute z-50 left-1/2 -translate-x-1/2 w-[280px] bg-[#FCE9E9]/98 backdrop-blur-2xl rounded-3xl p-5 shadow-[0_20px_50px_rgba(81,16,16,0.15)] border border-[#C74D4D]/20 animate-float
           ${openBelow ? "top-full mt-3" : "bottom-full mb-3"}`}>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-400">{iso}</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C74D4D]">{iso}</p>
             <button
               onClick={() => setOpen(false)}
-              className="rounded-xl p-1.5 text-slate-400 hover:text-violet-600 hover:bg-violet-100 transition-all"
+              className="rounded-xl p-1.5 text-[#C74D4D] hover:text-[#511010] hover:bg-[#C74D4D]/10 transition-all"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
@@ -568,13 +568,13 @@ function DayCell({ iso, day, isToday, doneCount, total, habits, completions, onT
                 <button
                   key={h.id}
                   onClick={() => onToggle(h.id)}
-                  className="flex w-full items-center justify-between rounded-2xl bg-white/50 border border-violet-100/50 px-4 py-3 text-sm transition-all hover:bg-white hover:shadow-md group"
+                  className="flex w-full items-center justify-between rounded-2xl bg-white/50 border border-[#C74D4D]/10 px-4 py-3 text-sm transition-all hover:bg-white hover:shadow-md group"
                 >
                   <span className="flex items-center gap-3">
                     <BoltIcon color={h.color} className="w-4 h-4" />
-                    <span className="truncate font-bold text-slate-700 group-hover:text-violet-600 transition-colors">{h.name}</span>
+                    <span className="truncate font-bold text-[#8B1E1E] group-hover:text-[#511010] transition-colors">{h.name}</span>
                   </span>
-                  <div className={`h-5 w-10 rounded-full border transition-all duration-300 relative ${done ? "bg-violet-600 border-violet-500" : "bg-white/5 border-white/10"}`}>
+                  <div className={`h-5 w-10 rounded-full border transition-all duration-300 relative ${done ? "bg-[#511010] border-[#511010]" : "bg-white/5 border-[#C74D4D]/20"}`}>
                     <div className={`absolute top-0.5 h-3.5 w-3.5 rounded-full bg-white transition-all duration-300 ${done ? "left-[22px]" : "left-0.5 shadow-sm"}`} />
                   </div>
                 </button>
