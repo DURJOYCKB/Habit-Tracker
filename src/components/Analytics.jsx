@@ -12,24 +12,24 @@ export default function Analytics() {
   const trendData = actions.getTrendData(14);
 
   return (
-    <div className="space-y-8 pb-12">
-      <div className="rounded-3xl glass p-8">
+    <div className="space-y-6 sm:space-y-8 pb-12">
+      <div className="rounded-3xl glass p-4 sm:p-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h1 className="text-2xl font-bold text-gradient">Performance Metrics</h1>
-            <p className="mt-1 text-sm text-slate-500 font-medium">
+            <h1 className="text-xl sm:text-2xl font-bold text-gradient">Performance Metrics</h1>
+            <p className="mt-1 text-xs sm:text-sm text-slate-500 font-medium">
               Deep insights into your consistency cycles.
             </p>
           </div>
-          <div className="bg-white/50 px-4 py-2 rounded-2xl border border-slate-200 shadow-sm">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">14-Day Velocity</p>
-            <p className="text-xl font-bold text-slate-800 leading-none mt-1">Steady Growth</p>
+          <div className="bg-white/50 px-3 sm:px-4 py-2 rounded-2xl border border-slate-200 shadow-sm w-fit">
+            <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400">14-Day Velocity</p>
+            <p className="text-lg sm:text-xl font-bold text-slate-800 leading-none mt-1">Steady Growth</p>
           </div>
         </div>
 
         <TrendChart data={trendData} />
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <StatCard title="30-Day Efficiency" value={`${avg30}%`} subtitle="Global Average" />
           <StatCard title="Active Archetypes" value={`${state.habits.length}`} subtitle="Habit count" />
           <StatCard
@@ -40,45 +40,45 @@ export default function Analytics() {
         </div>
       </div>
 
-      <div className="rounded-3xl glass p-8">
-        <h2 className="text-xl font-bold text-gradient">Habit Breakdown</h2>
+      <div className="rounded-3xl glass p-4 sm:p-8">
+        <h2 className="text-lg sm:text-xl font-bold text-gradient">Habit Breakdown</h2>
 
         {totals.length === 0 ? (
           <p className="mt-6 text-sm text-slate-400 text-center py-10 rounded-2xl border border-dashed border-slate-200">
             Initialize your journey on the Dashboard to see real-time data flow.
           </p>
         ) : (
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {totals.map((h) => (
               <div
                 key={h.id}
-                className="rounded-2xl bg-white/50 border border-slate-100 p-6 transition-all duration-300 hover:bg-white hover:shadow-xl group"
+                className="rounded-2xl bg-white/50 border border-slate-100 p-4 sm:p-6 transition-all duration-300 hover:bg-white hover:shadow-xl group"
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 rounded-full shadow-[0_0_8px_rgba(0,0,0,0.1)]" style={{ backgroundColor: h.color }} />
-                      <p className="truncate font-bold text-slate-800 uppercase tracking-wider text-xs">{h.name}</p>
+                      <p className="truncate font-bold text-slate-800 uppercase tracking-wider text-[10px] sm:text-xs">{h.name}</p>
                     </div>
-                    <p className="mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <p className="mt-2 text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                       Streak: <span className="text-orange-500">{h.streak} DAYS</span>
                     </p>
                   </div>
 
                   <div className="text-right">
-                    <p className="text-xl font-bold text-slate-800 tracking-tighter">{h.rate30}%</p>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">30D SUCCESS</p>
+                    <p className="text-lg sm:text-xl font-bold text-slate-800 tracking-tighter">{h.rate30}%</p>
+                    <p className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest">30D SUCCESS</p>
                   </div>
                 </div>
 
-                <div className="mt-6">
+                <div className="mt-4 sm:mt-6">
                   <div className="h-1.5 w-full rounded-full bg-slate-100 overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(0,0,0,0.05)]"
                       style={{ width: `${h.rate30}%`, backgroundColor: h.color }}
                     />
                   </div>
-                  <div className="mt-3 flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+                  <div className="mt-3 flex justify-between text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
                     <span>7D: {h.rate7}%</span>
                     <span>30D: {h.rate30}%</span>
                   </div>

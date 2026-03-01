@@ -102,7 +102,7 @@ export function HabitsProvider({ children }) {
     },
 
     getTrendData(days = 14) {
-      const dates = lastNDays(days).reverse();
+      const dates = lastNDays(days);
       return dates.map(d => {
         const dayCompletions = state.completions[d] || {};
         const done = state.habits.filter(h => dayCompletions[h.id]).length;

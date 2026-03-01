@@ -13,11 +13,11 @@ export default function Dashboard() {
   );
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.6fr_1fr] items-start">
+    <div className="grid gap-6 lg:gap-8 lg:grid-cols-[1.6fr_1fr] items-start pb-8">
       <section className="space-y-6">
-        <div className="rounded-3xl glass p-6">
-          <h1 className="text-2xl font-bold text-gradient">Focus Today</h1>
-          <p className="mt-1 text-sm text-slate-500">
+        <div className="rounded-3xl glass p-4 sm:p-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-gradient">Focus Today</h1>
+          <p className="mt-1 text-xs sm:text-sm text-slate-500">
             Precision tracking for <span className="font-bold text-violet-600">{today}</span>
           </p>
           <div className="mt-6">
@@ -25,8 +25,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="rounded-3xl glass p-6">
-          <h2 className="text-xl font-bold text-gradient">New Habit Archetype</h2>
+        <div className="rounded-3xl glass p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-bold text-gradient">New Habit Archetype</h2>
           <div className="mt-4">
             <HabitForm />
           </div>
@@ -34,7 +34,9 @@ export default function Dashboard() {
       </section>
 
       <section>
-        <ReminderPanel />
+        <div className="rounded-3xl">
+          <ReminderPanel />
+        </div>
       </section>
     </div>
   );

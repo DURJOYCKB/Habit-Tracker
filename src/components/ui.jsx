@@ -44,20 +44,20 @@ function LinkItem({ to, children }) {
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/40 bg-white/60 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-[#C74D4D] to-[#E07A5F] shadow-lg shadow-[#8B1E1E]/20 animate-float flex items-center justify-center">
-            <BoltIcon className="w-6 h-6 text-[#FCE9E9]" />
+      <div className="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between px-4 py-3 sm:py-4 gap-4">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-2xl bg-gradient-to-br from-[#C74D4D] to-[#E07A5F] shadow-lg shadow-[#8B1E1E]/20 animate-float flex items-center justify-center">
+            <BoltIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#FCE9E9]" />
           </div>
           <div>
-            <p className="text-lg font-bold leading-tight tracking-tight text-gradient">Daily Dominion</p>
-            <p className="text-xs text-slate-400 leading-tight">
+            <p className="text-base sm:text-lg font-bold leading-tight tracking-tight text-gradient">Daily Dominion</p>
+            <p className="text-[10px] sm:text-xs text-slate-400 leading-tight">
               Elevate your daily routine
             </p>
           </div>
         </div>
 
-        <nav className="flex items-center gap-1 bg-slate-900/5 p-1 rounded-2xl border border-slate-900/5 backdrop-blur-md">
+        <nav className="flex items-center gap-1 bg-slate-900/5 p-1 rounded-2xl border border-slate-900/5 backdrop-blur-md w-full sm:w-auto overflow-x-auto no-scrollbar">
           <LinkItem to="/">Dashboard</LinkItem>
           <LinkItem to="/calendar">Calendar</LinkItem>
           <LinkItem to="/analytics">Analytics</LinkItem>
@@ -170,34 +170,34 @@ export function HabitForm() {
 
       <div>
         <label className="text-sm font-semibold text-slate-500">Daily Schedule</label>
-        <div className="mt-1.5 grid grid-cols-4 gap-2">
+        <div className="mt-1.5 grid grid-cols-2 sm:grid-cols-4 gap-2">
           {times.map((t) => (
             <button
               key={t.label}
               type="button"
               onClick={() => setTimeOfDay(t.label)}
-              className={`flex flex-col items-center justify-center rounded-xl py-3 border transition-all duration-300 
+              className={`flex flex-col items-center justify-center rounded-xl py-2.5 sm:py-3 border transition-all duration-300 
                 ${timeOfDay === t.label
                   ? "bg-[#8B1E1E] text-[#FCE9E9] border-[#8B1E1E] shadow-lg shadow-[#8B1E1E]/20"
                   : "bg-white border-[#C74D4D]/20 text-[#C74D4D] hover:bg-[#FCE9E9] hover:border-[#8B1E1E]"}`}
             >
-              <span className="text-lg">{t.emoji}</span>
-              <span className="text-[10px] font-bold uppercase mt-1 tracking-wider">{t.label}</span>
+              <span className="text-base sm:text-lg">{t.emoji}</span>
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase mt-1 tracking-wider">{t.label}</span>
             </button>
           ))}
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <span className="text-sm font-semibold text-slate-300">Color Palette</span>
-        <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+        <span className="text-sm font-semibold text-slate-500">Color Palette</span>
+        <div className="flex flex-wrap gap-2">
           {presetColors.map((c) => (
             <button
               key={c}
               type="button"
               onClick={() => setColor(c)}
-              className={`h-8 w-8 rounded-full border-2 transition-all duration-300 transform
-                ${color === c ? "border-white scale-125 shadow-lg shadow-white/20" : "border-transparent opacity-60 hover:opacity-100 hover:scale-110"}`}
+              className={`h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 transition-all duration-300 transform
+                ${color === c ? "border-[#8B1E1E] scale-110 shadow-lg" : "border-transparent opacity-60 hover:opacity-100 hover:scale-110"}`}
               style={{ backgroundColor: c }}
               aria-label={`Select color ${c}`}
             />
@@ -247,30 +247,30 @@ export function HabitCard({ habit, dateISO }) {
   };
 
   return (
-    <div className="rounded-2xl glass p-5 transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B1E1E]/10 group">
-      <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
+    <div className="rounded-2xl glass p-4 sm:p-5 transition-all duration-500 hover:shadow-2xl hover:shadow-[#8B1E1E]/10 group">
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+        <div className="min-w-0 flex-1 w-full">
           <div className="flex items-center gap-2">
-            <BoltIcon color={habit.color} className="w-5 h-5 drop-shadow-sm" />
-            <p className="truncate text-lg font-bold text-slate-800 tracking-tight leading-none">{habit.name}</p>
+            <BoltIcon color={habit.color} className="w-5 h-5 drop-shadow-sm shrink-0" />
+            <p className="truncate text-base sm:text-lg font-bold text-slate-800 tracking-tight leading-none">{habit.name}</p>
           </div>
           <div className="mt-2.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#8B1E1E]">
             <span className="bg-[#C74D4D]/10 px-1.5 py-0.5 rounded-md flex items-center gap-1">
               {timeEmojis[habit.timeOfDay] || "📅"} {habit.timeOfDay || "Anytime"}
             </span>
           </div>
-          <div className="mt-2.5 flex items-center gap-3 text-xs text-slate-500 font-medium">
-            <span className="flex items-center gap-1">
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] sm:text-xs text-slate-500 font-medium">
+            <span className="flex items-center gap-1 whitespace-nowrap">
               <span className="text-orange-400">🔥</span> {stats.streak} day streak
             </span>
-            <span className="h-1 w-1 rounded-full bg-slate-700" />
-            <span>{stats.rate30}% success</span>
+            <span className="hidden sm:block h-1 w-1 rounded-full bg-slate-300" />
+            <span className="whitespace-nowrap">{stats.rate30}% success</span>
           </div>
         </div>
 
         <button
           onClick={() => actions.toggleDone(habit.id, dateISO)}
-          className={`shrink-0 rounded-xl px-5 py-2.5 text-sm font-bold transition-all duration-300 active:scale-95
+          className={`w-full sm:w-auto shrink-0 rounded-xl px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold transition-all duration-300 active:scale-95
             ${done
               ? "bg-[#8B1E1E] text-[#FCE9E9] shadow-lg shadow-[#8B1E1E]/30"
               : "bg-[#C74D4D]/10 text-[#C74D4D] border border-[#C74D4D]/20 hover:bg-white hover:text-[#511010] hover:border-[#8B1E1E]"}`}
@@ -424,41 +424,41 @@ export function CalendarGrid() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-3xl glass p-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gradient">Track Calendar</h1>
-            <p className="text-sm text-slate-400">
+      <div className="rounded-3xl glass p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-center sm:text-left">
+            <h1 className="text-xl sm:text-2xl font-bold text-gradient">Track Calendar</h1>
+            <p className="text-xs sm:text-sm text-slate-400">
               Track your consistency through the month.
             </p>
           </div>
 
-          <div className="flex items-center gap-1 bg-[#C74D4D]/10 p-1 rounded-2xl border border-[#C74D4D]/20">
+          <div className="flex items-center gap-1 bg-[#C74D4D]/10 p-1 rounded-2xl border border-[#C74D4D]/20 w-full sm:w-auto justify-between sm:justify-start">
             <button
               onClick={() => setCursor((c) => new Date(c.getFullYear(), c.getMonth() - 1, 1))}
-              className="rounded-xl px-4 py-2 text-base hover:bg-[#C74D4D]/20 transition-all font-bold text-[#8B1E1E]"
+              className="rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base hover:bg-[#C74D4D]/20 transition-all font-bold text-[#8B1E1E]"
             >
               ←
             </button>
-            <div className="min-w-[140px] text-center text-sm font-bold text-[#511010] uppercase tracking-widest">{monthLabel(cursor)}</div>
+            <div className="min-w-[120px] sm:min-w-[140px] text-center text-xs sm:text-sm font-bold text-[#511010] uppercase tracking-widest">{monthLabel(cursor)}</div>
             <button
               onClick={() => setCursor((c) => new Date(c.getFullYear(), c.getMonth() + 1, 1))}
-              className="rounded-xl px-4 py-2 text-base hover:bg-[#C74D4D]/20 transition-all font-bold text-[#8B1E1E]"
+              className="rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base hover:bg-[#C74D4D]/20 transition-all font-bold text-[#8B1E1E]"
             >
               →
             </button>
           </div>
         </div>
 
-        <div className="mt-8 grid grid-cols-7 gap-3">
+        <div className="mt-8 grid grid-cols-7 gap-1 sm:gap-3">
           {weekDays.map((d) => (
-            <div key={d} className="text-center text-xs font-bold uppercase tracking-widest text-slate-500">
+            <div key={d} className="text-center text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500">
               {d}
             </div>
           ))}
         </div>
 
-        <div className="mt-3 grid grid-cols-7 gap-3">
+        <div className="mt-2 sm:mt-3 grid grid-cols-7 gap-1 sm:gap-3">
           {cells.map((dateObj, idx) => {
             if (!dateObj) return <div key={idx} className="aspect-square rounded-2xl border border-transparent" />;
 
@@ -522,14 +522,14 @@ function DayCell({ iso, day, isToday, doneCount, total, habits, completions, onT
     <div className="relative">
       <button
         onClick={() => setOpen((x) => !x)}
-        className={`aspect-square w-full rounded-2xl border p-2 text-left transition-all duration-300 transform hover:scale-105
+        className={`aspect-square w-full rounded-lg sm:rounded-2xl border p-1 sm:p-2 text-left transition-all duration-300 transform hover:scale-105
           ${isToday
-            ? "border-[#8B1E1E] bg-[#511010] text-[#FCE9E9] shadow-[0_0_20px_rgba(81,16,16,0.2)]"
+            ? "border-[#8B1E1E] bg-[#511010] text-[#FCE9E9] shadow-[0_0_15px_rgba(81,16,16,0.2)]"
             : "border-[#C74D4D]/30 bg-white/50 hover:bg-white hover:border-[#8B1E1E]/50"}`}
       >
         <div className="flex items-start justify-between">
-          <div className={`text-lg font-bold ${isToday ? "text-[#FCE9E9]" : "text-[#511010]"}`}>{day}</div>
-          <div className={`text-xs font-bold ${isToday ? "text-[#C74D4D]" : "text-[#C74D4D]"}`}>
+          <div className={`text-sm sm:text-lg font-bold ${isToday ? "text-[#FCE9E9]" : "text-[#511010]"}`}>{day}</div>
+          <div className="hidden xs:block text-[8px] sm:text-xs font-bold text-[#C74D4D]">
             {total === 0 ? "" : `${doneCount}/${total}`}
           </div>
         </div>
@@ -549,8 +549,8 @@ function DayCell({ iso, day, isToday, doneCount, total, habits, completions, onT
       </button>
 
       {open && total > 0 && (
-        <div className={`absolute z-50 left-1/2 -translate-x-1/2 w-[280px] bg-[#FCE9E9]/98 backdrop-blur-2xl rounded-3xl p-5 shadow-[0_20px_50px_rgba(81,16,16,0.15)] border border-[#C74D4D]/20 animate-float
-          ${openBelow ? "top-full mt-3" : "bottom-full mb-3"}`}>
+        <div className={`fixed sm:absolute z-[100] sm:z-50 isolate inset-x-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 w-auto sm:w-[280px] bg-[#FCE9E9]/98 backdrop-blur-3xl rounded-3xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-[#C74D4D]/20 animate-float
+          ${openBelow ? "top-20 sm:top-full mt-3" : "bottom-20 sm:bottom-full mb-3"}`}>
           <div className="flex items-center justify-between mb-4">
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C74D4D]">{iso}</p>
             <button
